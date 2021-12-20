@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Difference between HTTP 1.1 vs HTTP 2</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+        <!-- Header Start -->
+        <div>
+                <header class="header">Difference between HTTP 1.1 vs HTTP 2</header>
+                <!-- Header End -->
+                <!-- Main Content Start -->
+                <p class="text">
+                        <span class="sub-head">Introduction</span></br>
+                        HTTP stands for Hyper Text Transfer Protocol. It is a communication
+                        protocol or you can it is a method, used to connect to web servers(to
+                        recieve & send information) on internet and on intranet(local network).
+                        It's primary function is to establish connection and upon request, sends
+                        information in many forms i.e, text, images etc through html pages,
+                        dislayed by browsers.
+                </p>
+                <p class="text">
+                        It is a de facto standard for communication on World Wide Web since it's
+                        invention in 1989. Fist usable version of HTTP was created in 1997. It
+                        went through several stages of developement. First version of HTTP was
+                        called HTTP/1.1 & it is still in use on web. In 21st century, 2015, a
+                        newer version of HTTP was created known as HTTP/2. Newer version(HTTP/2)
+                        is more efficient & faster, depends on how it prioritizes the loading
+                        process.
+                </p>
+                <p class="text">
+                        <span class="sub-head">HTTP/1.1</span> </br>
+                        Developed by Timothy Berners-Lee in 1989 as a communication
+                        standard for the World Wide Web, HTTP is a top-level application
+                        protocol that exchanges information between a client computer and a
+                        local or remote web server. In this process, a client sends a text-based
+                        request to a server by calling a method like GET or POST. In response,
+                        the server sends a resource like an HTML page contaning text, images, links etc, back to the
+                        client.
+                </p>
+                <p class="text">
+                        <span class="sub-head">HTTP/2</span> <br>
+                        HTTP/2 began as the SPDY protocol, developed primarily at Google with the intention of reducing
+                        web page
+                        load latency by using techniques such as compression, multiplexing, and prioritization. This
+                        protocol
+                        served as a template for HTTP/2 when the Hypertext Transfer Protocol working group httpbis of
+                        the IETF
+                        (Internet Engineering Task Force) put the standard together, culminating in the publication of
+                        HTTP/2 in
+                        May 2015. From the beginning, many browsers supported this standardization effort, including
+                        Chrome,
+                        Opera, Internet Explorer, and Safari. Due in part to this browser support, there has been a
+                        significant
+                        adoption rate of the protocol since 2015, with especially high rates among new sites.
+                </p>
+        </div>
+        <div class="text main-block">
+                <hr>
+                <div class="centre bold-text"><span class="sub-head">Difference</span></div><br>
+                <div><span class="diff-head underline">1. Delivery Models</span></div><br>
+                <span class="diff-head">HTTP/1.1</span><br>
+                <p class="text">HTTP/1.1 sends messages as plain text, and HTTP/2 encodes them into binary data and
+                        arranged them carefully. This implies that HTTP/2 can have various delivery models. Most of the
+                        time, a client's initial response in return for an HTTP GET request is not the fully-loaded
+                        page. Fetching additional resources from the server requires that the client send repeated
+                        requests, break or form the TCP connection repeatedly for them.As you can conclude already, this
+                        process will consume lots of resources and time.
+
+                        HTTP/1.1 addresses this problem by creating a persistent connection between server and client.
+                        Until explicitly closed, this connection will remain open. So, the client can use one TCP
+                        connection throughout the communication sans interrupting it again and again.
+
+                        This approach surely ensures good performance, but it also is problematic.
+
+                        For example – If a request at the queue head cannot retrieve its required resources, it can
+                        block all requests behind it. This phenomenon is called head-of-line blocking (HOL blocking).
+
+                        From the above, we can conclude that multiple TCP connections are essential.</p>
+                <br>
+                <span class="diff-head">HTTP/1.2</span><br>
+                <p class="text">Considering the bottleneck in the previous scenario, the HTTP/2 developers introduced a
+                        binary framing layer. This layer partitions requests and responses in tiny data packets and
+                        encodes them. Due to this, multiple requests and responses becomes able to run parallelly with
+                        HTTP/2 and chances of HOL blocking are bleak.
+
+                        Not only has it solved HOL blocking problem in HTTP/1.1, but it also concurrent message exchange
+                        between the client and the server. This way, both of them can have more control while the
+                        connection management quality is boosted too.
+
+                        The problems of HTTP/1.1 looks resolved to a great extent here. However, at times, multiple data
+                        streams demanding the same resource can hinder HTTP/2’s performance. To achieve better
+                        performance, HTTP/2 has another way. It has the capability of stream prioritization.
+
+                        When sending streams in parallel, the client can assign weights (1-256) to its stream to
+                        prioritize the responses it demands. Here, the higher the weight, the higher the priority. The
+                        serve sets the data retrieval order as per the request’s weight. Programmers can enjoy better
+                        control on page rendering process with stream prioritization ability.
+                        http1 vs http2 responce time</p>
+                <br>
+                <div><span class="diff-head underline">2. Predicting Resource Requests</span>
+                </div>
+                <br>
+
+                <span class="diff-head">HTTP/1.1</span>
+
+                <p class="text">To accomplish this, HTTP/1.1 has a different technique called resource inlining, wherein
+                        the server includes the required source within the HTML page in response to the initial GET
+                        request. Though this technique reduces the number of requests that the client must send, the
+                        larger, non-text format files increase the size of the page.
+
+                        As a result, the connection speed decreases, and the primary benefit obtained from it also
+                        nullifies. Another drawback is the client cannot separate the inlined resources from the HTML
+                        page. For this, a deeper level of control is required for connection optimization – a need that
+                        HTTP/2 meets with server push.
+                </p>
+                <span class="diff-head">HTTP/2</span><br>
+                <p class="text">As HTTP/2 supports multiple simultaneous responses to the client’s initial GET request,
+                        the server provides the required resource along with the requested HTML page. This is called the
+                        server push process, which performs the resource inlining like its precursor while keeping the
+                        page and the pushed resource separate. This process fixes the main drawback of resource inlining
+                        by enabling the client machine to decide to cache/decline the pushed resource separate from the
+                        HTML page.
+                </p>
+                <br>
+
+                <div><span class="diff-head underline">3. Compression</span>
+                </div>
+                <p class="text">Every HTTP transfer contains headers that describe the sent resource and its properties.
+                        This metadata can add up to 1KB or more of overhead per transfer, impacting the overall
+                        performance. For minimizing this overhead and boosting performance, compressions algorithms must
+                        be used to reduce the size of HTTP messages that travels between the machines.</p>
+
+                <span class="diff-head">HTTP/1.1
+                </span>
+                <br>
+                <p class="text">HTTP/1.x uses formats like gzip to compress the data transferred in the messages.
+                        However, the header component of the message is always sent as plain text. Though the header
+                        itself is small, it gets larger due to the use of cookies or an increased number of requests.
+                </p>
+
+                <span class="diff-head">HTTP/2
+                </span>
+                <br>
+                <p class="text">To deal with this bottleneck, HTTP/2 uses HPACK compression to decrease the average size
+                        of the header. This compression program encodes the header metadata using Huffman coding, which
+                        significantly reduces its size as a result. In addition, HPACK keeps track of previously
+                        transferred header values and further compresses them as per a dynamically modified index shared
+                        between client and server.
+                </p>
+        </div>
+
+        </main>
+
+        <!-- <script src="" async defer></script> -->
+</body>
+
+</html>
